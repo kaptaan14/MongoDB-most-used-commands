@@ -1,0 +1,104 @@
+To view all databases
+    show dbs;
+
+To make-new/switch database
+    use <database-name>
+
+To view current database
+    db
+
+To delete database
+    db.dropDatabase()
+
+To see all collections
+    show collections
+
+To make new collections
+    db.createCollection('<collection-name>')
+
+To delete a collection
+    db.<collection-name>.drop()
+
+To insert rows
+    db.<collection-name>.insert({
+        'name': 'Ashish',
+        'lang' : 'JavaScript',
+        'member_since': 2
+    })
+
+To insert many rows
+    db.<collection-name>.insertMany([{
+        'name': 'Ashish',
+        'lang' : 'JavaScript',
+        'member_since': 2
+    },
+    {
+        'name': 'Singh',
+        'lang': 'C++',
+        'member_since': 3
+    }
+    ])
+
+To see all rows
+    db.<collection-name>.find()
+    db.<collection-name>.find().pretty()  
+
+To search in a mongoDB
+    db.<collection-name>.find({name:'Singh'})
+
+To limit the number of rows in output
+    db.<collection-name>.find().limit(<no-of-limit>)
+
+To count the total number of rows
+    db.<collection-name>.find().count()
+
+To count the number of rows with same name
+    db.<collection-name>.find({name: 'Ashish'}).count()
+
+To get the sort output 
+    for asscending order (1)
+    db.<collection-name>.find().sort({'member-since':1})
+
+    for descending order (-1)
+    db.<collection-name>.find().sort({'member-since':-1})
+
+
+To find first one object with parameter
+    db.<collection-name>.findOne({name: 'Ashish'})
+
+
+To update a row
+    db.<collection-name>.update({name:'Ashish'},
+    {$set: {"name":"singh"}
+    })
+   
+To upsert a row
+    db.<collection-name>.update({name:'Thakur'},
+    {$set: {"name":"singh"}
+    },{upsert: true})
+
+
+MongoDB increment operator
+    db.<collection-name>.update({name: 'Singh'},
+    {$inc: 
+    {'member-since' : 10}
+    })  
+
+MongoDB Rename operator
+    db.<collection-name>.update({name: 'Singh'},
+    {$rename: 
+    {'member-since' : 'member'}
+    })  
+
+
+Delete row
+    db.<collection-name>.remove({name: 'Ashish'})
+
+Less than
+    db.<collection-name>.find({member_since : {$lt: 5}})
+
+Greater than
+    db.<collection-name>.find({member_since : {$gt: 5}})
+
+
+
